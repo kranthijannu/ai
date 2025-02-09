@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive AI Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* Top Navigation Buttons */
+        .top-nav {
+            width: 100%;
+            background: #222;
+            padding: 5px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .top-nav a {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            background: #0056b3;
+        }
+
+
+        /* Left Navigation Bar */
+        .left-nav {
+            width: 100%;
+            background: #222;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .left-nav button {
+            flex: 1;
+            min-width: 150px;
+            margin: 5px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .left-nav button:hover {
+            background: #0056b3;
+        }
+        .left-nav a {
+            text-decoration: none;
+            color: white;
+        }
+        /* Right Content Area */
+        .right-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            overflow-y: auto;
+        }
+
+        .right-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .right-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+            }
+
+            .left-nav {
+                flex-direction: column;
+                width: 25%;
+                justify-content: flex-start;
+            }
+
+            .left-nav button {
+                margin: 10px 0;
+                flex: none;
+            }
+
+            .right-content {
+                padding: 40px;
+            }
+
+            .right-content h1 {
+                font-size: 36px;
+            }
+
+            .right-content p {
+                font-size: 20px;
+            }
+            .top-nav {
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .right-content h1 {
+                font-size: 40px;
+            }
+
+            .right-content p {
+                font-size: 22px;
+            }
+           
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Left Navigation -->
+    <div class="left-nav">
+        <button onclick="showContent('default')">What is Machine Learning?</button>
+        <button onclick="showContent('deep-learning')">Deep Learning</button>
+        <button onclick="showContent('key-algorithms')">Key Algorithms in ML</button>
+        <button><a href="quiz2.html">  Quiz</a></button>
+        <button><a href="stage1.html">Stage 1</a></button>
+        <button><a href="stage3.html">Stage 3</a></button>
+       
+    </div>
+
+    <!-- Right Content -->
+    <div class="right-content" id="content">
+        <!-- Default Content -->
+        <h1>Welcome!</h1>
+        <p>Click on the "What is AI" button to learn more about Artificial Intelligence.</p>
+    </div>
+
+    <script>
+        // Function to dynamically update content
+        function showContent(section) {
+            const content = document.getElementById('content');
+            if (section === 'default') {
+                content.innerHTML = `
+                    <h1>What is Machine Learning?</h1>
+                    <p>
+                        Machine Learning (ML) is like teaching computers to learn and make decisions on their own by using data. Instead of writing step-by-step instructions for every task, we provide the computer with lots of examples and let it figure out patterns or rules.
+                    </p>
+                <ol style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+    <li>
+        <strong>Learn from Data:</strong> <br>
+        <p>The computer studies the data you give it. For example, if you show it 1,000 pictures of cats and dogs (and tell it which is which), it learns to identify patterns, like:</p>
+        <ul>
+            <li>Cats have pointy ears and whiskers.</li>
+            <li>Dogs often have floppy ears and different fur patterns.</li>
+        </ul>
+    </li>
+    <li>
+        <strong>Make Predictions or Decisions:</strong> <br>
+        <p>Once it has learned, the computer can then predict or decide on new data. For instance:</p>
+        <ul>
+            <li>If you show it a new picture of a cat, it can recognize, "Oh! This is a cat!"</li>
+        </ul>
+    </li>
+</ol>
+
+<h1>Real-Life Example (Easy to Understand):</h1>
+                  <p>Imagine you’re trying to teach a child to recognize fruits:</p>
+                  <ul style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+                    <li>You show them a pictur</li>
+                    <li>Then, you show them a picture of a banana and say, “This is a banana.”</br>
+After looking at many examples, the child learns the difference. The next time they see a fruit, they can tell whether it’s an apple or a banana.</li>
+
+</ul>
+<p>Machine Learning works in a similar way, but instead of a child, the "learner" is a computer, and instead of fruits, the "data" could be anything: emails, pictures, numbers, or even sounds.</p>
+   
+  <h1>Why Is Machine Learning Important?</h1>
+                  <p>  ML makes it possible for computers to:</p>
+                  <ulstyle="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+                    <li>Automatically sort your emails into spam and non-spam.</li>
+                    <li>Recommend movies or music based on your preferences (like Netflix or Spotify).</li>
+                    <li>Help doctors identify diseases by analyzing medical reports.</li>
+
+                </ul>
+                <h1>Think of ML This Way:</h1>
+                <p>It’s like giving the computer a brain to learn from experience instead of relying on us to program it for every task. It starts simple, learns from mistakes, and keeps improving over time, just like humans do!</p>
+                `;
+            } else if (section === 'hw') {
+                content.innerHTML = `
+                
+                `;
+            } else if (section === 'deep-learning') {
+                content.innerHTML = `
+                <h1>Intorduction to Deep Learning</h1>
+                <p>Deep Learning is like a special kind of Machine Learning, but more powerful. It is used to handle very complicated tasks by mimicking how the human brain works.</p>
+                </hr style="border: 1px solid #f5f5f5;">
+                <h1>How Deep Learning Works:</h1>
+                <p>At the heart of Deep Learning are neural networks, which are computer systems inspired by the way our brain works.</p>
+                <ul style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+                    <li>Just like our brain has billions of interconnected neurons to process information, a neural network has layers of "artificial neurons" that process data step by step.</li>
+                    <li>These neurons are organized into layers:</li>
+                    <ol>
+                        <li><strong>Input Layer:</strong>Where the raw data (like an image or text) enters.</li>
+                        <li><strong>Hidden Layers:</strong>These layers do the "thinking" by identifying patterns. The more layers it has, the deeper and more complex its understanding becomes.</li>
+                        <li><strong>Output Layer:</strong> Where the result or decision comes out (like recognizing an image as a "cat").</li>
+                    </ol>
+                </ul>
+                </hr style="border: 1px solid #f5f5f5;">
+                <h1>Why is it Called "Deep" Learning?</h1>
+                <p>The term "deep" comes from having many layers in the neural network. More layers = deeper understanding.
+
+                </p>
+                <hr>
+                <h1>Real-Life Example (Brgginner-Friendly):</h1>
+                <p>Here are a few examples to help you understand how Deep Learning works:</p>
+                <ol style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+                    <li><strong>Voice Assistants (Siri, Alexa):</strong></br>
+                        <ul>
+                            <li>Deep Learning helps these systems understand what you're saying, even with different accents or pronunciations.</li>
+                            <li>When you say, "What’s the weather today?", it breaks down your voice, processes it step by step, and gives you the answer.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Image Recognition (Google Lens):</strong></br>
+                        <ul>
+                            <li>Deep Learning helps apps recognize objects in photos. For example, you take a picture of a dog, and the app can tell it’s a "Golden Retriever."</li>
+                            <li>It works by analyzing tiny details, like shapes, colors, and patterns in the image.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Self-Driving Cars:</strong></br>
+                        <ul>
+                            <li>Deep Learning processes data from cameras and sensors to identify pedestrians, traffic signs, and other vehicles, helping the car make safe decisions.</li>
+                        </ul>
+                    </li>
+                </ol>
+               <hr>
+        <h1>Why Is Deep Learning So Powerful?</h1>
+     <p>Deep Learning is better at handling big and complex data compared to regular Machine Learning.</p>
+     <ul style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+        <li><strong>Example:</strong>
+            <ul>
+                <li>A traditional Machine Learning algorithm might struggle to recognize a blurry picture of a cat.</li>
+                <li>A Deep Learning model, with its many layers, can still figure it out by analyzing subtle details like the shape of the ears or tail.</li>
+
+            </ul>
+    </ul>
+    <hr>
+    <h1>Think of it This Way:</h1>
+    <p>Deep Learning is like teaching a computer to think at a deeper level. Instead of just looking at the surface, it digs into the data to find hidden patterns, just like how humans use intuition and logic to solve complex problems.</p>
+
+
+
+
+
+                `;
+            } else if(section === 'imp') {
+                content.innerHTML = `
+                   
+                `;
+        } else if (section === 'key-algorithms') {
+            content.innerHTML = `
+            <h1>Key Algorithms & Models in Machine Learning</h1>
+            <p>There are different ways to teach a computer to learn, depending on the type of data we give it. Let’s break it down step by step in simple terms so beginners can easily understand.</p>
+            <hr>
+            <ol style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+              <li><strong>Supervised Learning:</strong></br></li>
+                <p>This is like teaching a child with examples and answers. You give the model both the question (input) and the answer (output) so it learns the relationship between them.</p>
+                <p><b>How It Works:</b></p></br>
+                  <ul>
+                    <li>The model looks at the data and learns patterns.</li>
+                    <li>After learning, it can predict the output for new data.</li>
+                    </ul>
+                <p><b>Example Algorithms:</b></p></br>
+                <ul>
+                    <li><strong>Regression: </strong>Predicts continuous (number-based) outcomes.</li>
+                    <ul>
+                        <li><strong>Example:</strong>Predicting the price of a house based on its size, location, and number of rooms.</li>
+                    </ul>
+                    <li><strong>Classification: </strong>Categorizes data into groups</li>
+                    <ul>
+                        <li><strong>Example:</strong>Sorting emails into "Spam" and "Not Spam."</li>
+                    </ul>
+                    <hr width:300%; border: 1px solid #f5f5f5;>
+                </ul>
+            <li><strong>Unsupervised Learning:</strong></br></li>
+            <p>This is like giving a child a puzzle without showing them what the final picture looks like. The model gets input data without answers (output) and tries to find patterns or organize the data by itself.</p>
+            <p><b>How It Works:</b></p></br>
+            <ul>
+                <li>The model looks at the data and groups or simplifies it based on similarities.</li>
+            </ul>
+            <p><b>Example Algorithms:</b></p></br>
+            <ul>
+                <li><strong>Clustering: </strong> Groups similar data points together</br>
+                    <ul>
+                        <li><strong>Example:</strong>A shopping website groups its users based on their buying behavior (e.g., budget shoppers, luxury buyers).</li>
+
+                    </ul>
+                <li><strong>Dimensionality Reduction: </strong>Simplifies complex data while keeping the important details.</li>
+                <ul>
+                    <li><strong>Example:</strong>Principal Component Analysis (PCA) is used to reduce large datasets into smaller, easy-to-understand visualizations. Think of reducing a 100-page document into a 2-page summary.</li>
+            
+                </ul>
+                <hr>
+            </ul>
+
+            <li><strong>Neural Networks & Deep Learning:</strong></br></li>
+            <p>This is where things get really smart. Neural networks are inspired by the human brain. Just like how our brain processes information using neurons, these models use artificial neurons to process data.</p>
+            <P><b>Nerual Networks(Basic):</b></p></br>
+                <ul>
+                    <li>Data moves through layers of "neurons," each layer focusing on a specific part of the data.</li>
+                    <li>These layers help the model understand complex patterns and relationships in the data.</li>
+                </ul>
+            <p><b>Deep Learning(Advanced Neural Networks):</b></p></br>
+                <ul>
+                 <li>When a neural network has many layers, it becomes "deep," hence the name Deep Learning.</li>
+                 <li>Deep Learning is great for solving complex problems, like understanding speech, recognizing objects in videos, or even detecting diseases in medical images.</li>
+                </ul>
+            <hr>
+            </ol>
+            <h1>Simpler Way of Think About It:</h1>
+            <ul   style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+
+                <li><strong>Supervised Learning:</strong> Like a teacher giving you questions and answers to help you learn.</li>
+                <li><strong>Unsupervised Learning:</strong> Like  figuring out patterns on your own without a guide.</li>
+                <li><strong>Nerual Networks:</strong> Like giving a computer a simplified version of how the brain works.</li>
+                <li><strong>Deep Learning:</strong> Making that "brain" bigger and smarter to handle more complicated problems.
+                </li>
+            <hr style="width=100%; border: 1px solid #f5f5f5;">
+            </ul>
+        
+            
+        <h1>Real-Life Examples for Each Type:</h1>
+        <ol  style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+            <li><strong>Supervised Learning:</strong></br></li>
+                <ul>
+                   <li>Predicting the price of a used car based on its age, mileage, and condition.</li>
+                </ul>
+            <li><strong>Unsupervised Learning:</strong></br></li>
+            <ul>
+                <li>Grouping music listeners based on their favorite genres for better recommendations.</li>
+                </ul>
+            <li><strong>Neural Networks & Deep Learning:</strong></br></li>
+            <ul>
+                <li>Translating a voice command like "Play my favorite song" into action on your phone.</li>
+            </ul>
+
+             
+        </ol> 
+
+            
+            
+                
+            `;
+
+    }
+}
+    </script>
+</body>
+</html>

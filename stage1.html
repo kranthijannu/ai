@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive AI Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* Top Navigation Buttons */
+        .top-nav {
+            width: 100%;
+            background: #222;
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .top-nav a {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            background: #0056b3;
+        }
+
+
+        /* Left Navigation Bar */
+        .left-nav {
+            width: 100%;
+            background: #222;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .left-nav button {
+            flex: 1;
+            min-width: 150px;
+            margin: 5px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .left-nav button:hover {
+            background: #0056b3;
+        }
+        .left-nav a {
+            text-decoration: none;
+            color: white;
+        }
+        /* Right Content Area */
+        .right-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            overflow-y: auto;
+        }
+
+        .right-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .right-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+            }
+
+            .left-nav {
+                flex-direction: column;
+                width: 25%;
+                justify-content: flex-start;
+            }
+
+            .left-nav button {
+                margin: 10px 0;
+                flex: none;
+            }
+
+            .right-content {
+                padding: 40px;
+            }
+
+            .right-content h1 {
+                font-size: 36px;
+            }
+
+            .right-content p {
+                font-size: 20px;
+            }
+            .top-nav {
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .right-content h1 {
+                font-size: 40px;
+            }
+
+            .right-content p {
+                font-size: 22px;
+            }
+           
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Left Navigation -->
+    <div class="left-nav">
+        <button onclick="showContent('default')">What is AI?</button>
+        <button onclick="showContent('history')">Brief History of AI</button>
+        <button onclick="showContent('applications')">Applications of AI</button>
+        <button><a href="skill-test.html">  Quiz</a></button>
+        <button><a href="stage2.html">Stage 2</a></button>
+        <button><a href="stage3.html">Stage 3</a></button>
+       
+    </div>
+
+    <!-- Right Content -->
+    <div class="right-content" id="content">
+        <!-- Default Content -->
+        <h1>Welcome!</h1>
+        <p>Click on the "What is AI" button to learn more about Artificial Intelligence.</p>
+    </div>
+
+    <script>
+        // Function to dynamically update content
+        function showContent(section) {
+            const content = document.getElementById('content');
+            if (section === 'default') {
+                content.innerHTML = `
+                    <h1>What is AI?</h1>
+                    <p>
+                        Artificial Intelligence (AI) refers to a branch of computer science that focuses on creating machines or systems 
+                        that can simulate human intelligence. This means enabling machines to think, learn, and act in ways that mimic 
+                        human abilities like reasoning, problem-solving, and decision-making. In simple terms, AI empowers machines to 
+                        perform tasks faster and more efficiently than humans.
+                    </p>
+                `;
+            } else if (section === 'history') {
+                content.innerHTML = `
+                    <h1>Brief History of AI</h1>
+                    <p>Artificial Intelligence (AI) has a rich history that spans decades, with groundbreaking milestones shaping its development and adoption. Here's an in-depth look at how AI evolved over the years:</p>
+                    
+                    <h2>1950s: The Birth of AI</h2>
+                    <p>The concept of machine intelligence emerged in the 1950s, thanks to visionary thinkers like <strong>Alan Turing</strong>.</p>
+                    <ul>
+                        <li>
+                            <strong>Alan Turing's Contribution:</strong>
+                            <p>Turing proposed the idea that machines could "think" and perform tasks like humans. He introduced the <strong>Turing Test</strong>, a way to measure a machine's intelligence. If a machine could hold a conversation indistinguishable from a human, it would pass the test.</p>
+                            <p>Example: If you chat with a computer program and can't tell whether it's a human or a machine, that program would pass the Turing Test.</p>
+                        </li>
+                    </ul>
+                    <p>This decade laid the theoretical foundation for AI, planting the seeds for future innovations.</p>
+
+                    <h2>1956: The Dartmouth Conference</h2>
+                    <p>This year marked the official birth of Artificial Intelligence as a field of study.</p>
+                    <ul>
+                        <li>A group of researchers, including <strong>John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon</strong>, gathered at Dartmouth College to discuss the potential of machines that could "think."</li>
+                        <li>During this conference, <strong>John McCarthy</strong> coined the term <strong>"Artificial Intelligence"</strong> to describe this emerging field.</li>
+                    </ul>
+                    <p><strong>Significance:</strong><br>
+                    The conference brought AI into the academic spotlight, setting the stage for research and development.</p>
+
+                    <h2>1970s-1980s: The AI Winter</h2>
+                    <p>The initial excitement around AI led to high expectations, but progress was slow due to technical limitations and lack of funding.</p>
+                    <ul>
+                        <li><strong>Challenges Faced:</strong>
+                            <ul>
+                                <li>Limited computational power to process complex algorithms</li>
+                                <li>Lack of sufficient data to train machines</li>
+                                <li>Overpromising results that failed to materialize, leading to reduced investments</li>
+                            </ul>
+                        </li>
+                        <li><strong>"AI Winter":</strong> This term refers to periods of stagnation in AI research when enthusiasm and funding dried up.</li>
+                    </ul>
+                    <p>Despite the setbacks, researchers continued to explore AI, creating small but meaningful advancements.</p>
+
+                    <h2>1997: IBM's Deep Blue Triumph</h2>
+                    <p>AI returned to the spotlight with IBM's <strong>Deep Blue</strong>, a chess-playing computer.</p>
+                    <ul>
+                        <li><strong>Achievement:</strong> Deep Blue defeated <strong>Garry Kasparov</strong>, the reigning world chess champion, in a series of matches.</li>
+                        <li><strong>Significance:</strong>
+                            <ul>
+                                <li>Demonstrated the power of AI to tackle complex, strategic tasks</li>
+                                <li>Proved machines could outperform humans in specific domains with proper programming</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>This victory was a milestone that reignited global interest in AI and its potential.</p>
+
+                    <h2>2010s: The AI Boom</h2>
+                    <p>The 2010s witnessed a revolution in AI, driven by advancements in <strong>machine learning</strong> and <strong>deep learning</strong> technologies.</p>
+                    <ul>
+                        <li><strong>Key Innovations:</strong>
+                            <ul>
+                                <li><strong>Self-Driving Cars:</strong> Companies like Tesla and Waymo developed autonomous vehicles using sensors, cameras, and AI algorithms</li>
+                                <li><strong>Voice Assistants:</strong> Virtual assistants like Siri, Alexa, and Google Assistant became household names</li>
+                                <li><strong>Healthcare Breakthroughs:</strong> AI systems began analyzing medical images and predicting diseases</li>
+                                <li><strong>AI in Entertainment:</strong> Netflix and Spotify leveraged AI for personalized recommendations</li>
+                            </ul>
+                        </li>
+                        <li><strong>Contributing Factors:</strong>
+                            <ul>
+                                <li>Increased computing power (GPUs for deep learning)</li>
+                                <li>Availability of massive datasets (Big Data)</li>
+                                <li>Development of advanced neural network algorithms</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h2>Today: AI Everywhere</h2>
+                    <p>AI now transforms every aspect of our lives, powering technologies once considered science fiction:</p>
+                    <ul>
+                        <li><strong>ChatGPT and Generative AI:</strong> Systems generating human-like text for writing and coding assistance</li>
+                        <li><strong>Autonomous Vehicles:</strong> Increasingly reliable self-driving cars</li>
+                        <li><strong>Healthcare Diagnostics:</strong> AI models assisting doctors with disease detection</li>
+                        <li><strong>Customer Service:</strong> 24/7 AI chatbots</li>
+                        <li><strong>Other Applications:</strong>
+                            <ul>
+                                <li>Fraud detection in banking</li>
+                                <li>Smart home devices</li>
+                                <li>Personalized e-commerce experiences</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h2>The Journey Ahead</h2>
+                    <p>AI continues evolving with possibilities ranging from curing diseases to space exploration, driven by rapid advancements in computing and research.</p>
+                `;
+            } else if (section === 'applications') {
+                content.innerHTML = `
+                  <h1>Applications of Artificial Intelligence</h1>
+<p>Artificial Intelligence (AI) has seamlessly integrated into multiple sectors, revolutionizing industries and enhancing efficiency. Below is an elaboration of how AI is applied in various domains with real-world examples:</p>
+
+<h2>1. Healthcare</h2>
+<ul>
+    <li><strong>Diagnostics:</strong> AI-powered tools like IBM Watson Health analyze medical images and detect diseases like cancer, often with greater accuracy than humans.</li>
+    <li><strong>Personalized Treatment Plans:</strong> AI tailors treatments based on a patient's genetic information, medical history, and lifestyle.</li>
+    <li><strong>Drug Discovery:</strong> AI accelerates the process of discovering and testing new drugs by simulating chemical interactions.</li>
+</ul>
+
+<h2>2. Finance</h2>
+<ul>
+    <li><strong>Fraud Detection:</strong> AI systems monitor transactions in real time, flagging suspicious activities that might indicate fraud.</li>
+    <li><strong>Algorithmic Trading:</strong> AI-powered trading systems analyze market trends and execute trades faster and more efficiently than humans.</li>
+    <li><strong>Personalized Financial Advice:</strong> AI-powered robo-advisors provide investment recommendations tailored to individual goals and risk tolerance.</li>
+</ul>
+
+<h2>3. Education</h2>
+<ul>
+    <li><strong>Adaptive Learning Platforms:</strong> AI adjusts the content and pace of lessons based on a student’s progress and learning style.</li>
+    <li><strong>Personalized Education Tools:</strong> AI tutors provide customized assistance, helping students improve specific skills.</li>
+    <li><strong>Automated Grading:</strong> AI tools save teachers time by grading assignments and providing feedback.</li>
+</ul>
+
+<h2>4. Transportation</h2>
+<ul>
+    <li><strong>Autonomous Vehicles:</strong> Self-driving cars use AI to navigate roads, avoid obstacles, and make real-time decisions.</li>
+    <li><strong>Traffic Management Systems:</strong> AI optimizes traffic flow by predicting congestion and adjusting traffic lights.</li>
+    <li><strong>Logistics and Delivery:</strong> AI optimizes delivery routes, reducing fuel consumption and delivery times.</li>
+</ul>
+
+<h2>5. Entertainment</h2>
+<ul>
+    <li><strong>Content Recommendation Systems:</strong> AI algorithms suggest movies, shows, and music based on user preferences and viewing history.</li>
+    <li><strong>Content Creation:</strong> AI generates music, art, and even scripts for movies.</li>
+    <li><strong>Gaming:</strong> AI powers non-player characters (NPCs) in video games, making them more realistic and challenging.</li>
+</ul>
+
+<h2>6. Retail</h2>
+<ul>
+    <li><strong>Virtual Shopping Assistants:</strong> AI chatbots help customers find products, provide recommendations, and answer queries.</li>
+    <li><strong>Inventory Management:</strong> AI predicts demand trends, preventing overstocking or understocking of items.</li>
+    <li><strong>Personalized Shopping Experiences:</strong> AI analyzes customer data to suggest products tailored to their preferences.</li>
+</ul>
+
+                `;
+            } 
+        }
+    </script>
+</body>
+</html>

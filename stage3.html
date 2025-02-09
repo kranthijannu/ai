@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive AI Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        /* Top Navigation Buttons */
+        .top-nav {
+            width: 100%;
+            background: #222;
+            padding: 5px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .top-nav a {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            background: #0056b3;
+        }
+
+
+        /* Left Navigation Bar */
+        .left-nav {
+            width: 100%;
+            background: #222;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .left-nav button {
+            flex: 1;
+            min-width: 150px;
+            margin: 5px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .left-nav button:hover {
+            background: #0056b3;
+        }
+        .left-nav a {
+            text-decoration: none;
+            color: white;
+        }
+        /* Right Content Area */
+        .right-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            overflow-y: auto;
+        }
+
+        .right-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .right-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row;
+            }
+
+            .left-nav {
+                flex-direction: column;
+                width: 25%;
+                justify-content: flex-start;
+            }
+
+            .left-nav button {
+                margin: 10px 0;
+                flex: none;
+            }
+
+            .right-content {
+                padding: 40px;
+            }
+
+            .right-content h1 {
+                font-size: 36px;
+            }
+
+            .right-content p {
+                font-size: 20px;
+            }
+            .top-nav {
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .right-content h1 {
+                font-size: 40px;
+            }
+
+            .right-content p {
+                font-size: 22px;
+            }
+           
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Left Navigation -->
+    <div class="left-nav">
+        <button onclick="showContent('default')">Real-World Applications of AI</button>
+        <button onclick="showContent('Smart Helpers')">Smart Helpers</button>
+        <button onclick="showContent('Recommendations & Entertainment')">Personalized Experiences</button>
+        <button onclick="showContent('Super Savers')">Super Savers</button>
+        <button onclick="showContent('Game Changers')"> Game Changers</button>
+        <button><a href="quiz3.html">  Quiz</a></button>
+        <button><a href="stage1.html">Stage 1</a></button>
+        <button><a href="stage3.html">Stage 3</a></button>
+       
+    </div>
+
+    <!-- Right Content -->
+    <div class="right-content" id="content">
+        <!-- Default Content -->
+        <h1>Welcome!</h1>
+        <p>Click on the Real-World Applications of AI: to know more about ai</p>
+    </div>
+
+    <script>
+        // Function to dynamically update content
+        function showContent(section) {
+            const content = document.getElementById('content');
+            if (section === 'default') {
+                content.innerHTML = `
+<h1>Real-World Applications of AI: Simplified & Exciting<h1>
+    <P style="margin-bottom: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">Artificial Intelligence (AI) is everywhere! From helping us chat with virtual assistants to making self-driving cars a reality, AI makes life smarter, easier, and cooler. </p>
+                `;
+            } 
+             else if (section === 'Smart Helpers') {
+                content.innerHTML = `
+                <h1>Smart Helpers: Chatbots & Virtual Assistants</h1>
+                <p>AI acts like a super-smart friend or assistant who’s always ready to help!</p>
+                <ol style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+            <li><strong>Chatbots:</strong> These AI-powered helpers pop up when you visit websites and answer your questions instantly. 
+                Whether it’s booking a flight or tracking your delivery, chatbots make it quick and easy.</li>
+                <p  style="font-size:15px;"><strong>Example:</strong> Asking a chatbot, “Where’s my package?” and it gives you real-time updates.</p>
+            <li><strong>Virtual Assistants:</strong> Meet Siri, Alexa, and Google Assistant!
+                 These voice-powered AIs can set reminders, play your favorite songs, 
+                 or even control smart home devices with just your voice.</li>
+            <p style="font-size:15px;"><strong>Example:</strong> Saying, “Hey Alexa, turn off the lights,” and voilà, your room goes dark!</p>
+
+</ol>
+
+ `;
+  } else if(section === 'Recommendations & Entertainment') {
+                content.innerHTML = `
+                   <h2> Personalized Experiences: Recommendations & Entertainment</h2>
+                   <p>Ever wondered how Netflix knows exactly what you want to watch, or why Spotify plays the perfect playlist? That’s AI magic!</p>
+  <ol style="margin-bottom: 20px;
+ padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+            <li><strong>Recommendation Systems:</strong> AI learns your preferences and suggests things you’ll love, whether it’s movies, music, or even online shopping deals.</li>
+            <ul>
+                <p style="font-size:15px"><strong>Example:</strong> Netflix recommending “Stranger Things” because you enjoyed “The Witcher.”</p>
+                </ul>
+            <li><strong>Entertainment:</strong> Platforms like YouTube and TikTok use AI to serve you videos tailored to your interests. It’s why your feed feels like it’s reading your mind!</li>
+            
+</ol>
+                `;
+        } else if (section === 'Super Savers') {
+            content.innerHTML = `
+            <h2 style=" margin-bottom: 20px;
+               padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">Super Savers: Healthcare & Fraud Detection</h2>
+            <p style=" margin-bottom: 20px;
+               padding: 10px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">  AI is saving lives and protecting wallets with its amazing powers!</p>
+            <ol style=" margin-bottom: 20px;
+               padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+                <li><strong>Healthcare:</strong> I helps doctors diagnose diseases faster and more accurately. It scans medical images, predicts potential health issues, and even suggests treatments.</li>
+                <ul>
+                    <p style="font-size:15px;"><strong>Example:</strong> AI  identifying early signs of cancer from an X-ray, giving patients a better chance at recovery.</p>
+                </ul>
+                <li><strong>Fraud Detection:</strong> Banks use AI to keep your money safe by spotting suspicious activity, like unusual purchases from far-off places.</li>
+                <ul>
+<p style="font-size:15px;"><strong>Example:</strong> AI freezing your credit card when it detects a sudden purchase in another country.</p>
+            </ul>
+            </ol>
+
+            `;
+
+    } else if(section =='Game Changers') {
+        content.innerHTML = `
+        <h2 style="margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">Game Changers: Self-Driving Cars & Retail</h2>
+        
+        <p style="margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">AI is transforming the way we travel and shop, making everything smoother and smarter.</p>
+        <ol style="margin-bottom: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #222;">
+            <li><strong>Self-Driving Cars:</strong> Imagine a car that drives itself! AI powers vehicles to navigate roads, recognize pedestrians, and follow traffic rules—all without human help.</li>
+            <p style="font-size:15px;"><strong>Example:</strong> Tesla’s AI-powered cars that can park themselves or drive you home.</p>
+            <li><strong>Retail:</strong> hopping gets a tech boost with AI! It suggests outfits based on your style, ensures your favorite products are in stock, and makes online shopping more personal.</li>
+            <p style="font-size:15px;"><strong>Example:</strong> An app recommending jackets because it’s winter and you recently bought boots.</p>
+        </ol>
+
+        `;}
+
+}
+    </script>
+</body>
+</html>

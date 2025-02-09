@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 3 Quiz: Real-World Applications of AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            overflow-y: auto;
+        }
+
+        .quiz-container h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin: 10px 0;
+        }
+
+        .options button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .options button:hover {
+            background-color: #0056b3;
+        }
+
+        .options button.correct {
+            background-color: #28a745;
+        }
+
+        .options button.incorrect {
+            background-color: #dc3545;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ffb703;
+        }
+
+        .show-answer {
+            margin-top: 10px;
+            color: #00d4ff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .completion-message {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .completion-message p {
+            font-size: 22px;
+            color: #ffd700;
+        }
+
+        .completion-message button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .completion-message button:hover {
+            background-color: #218838;
+        }
+
+        @media (min-width: 768px) {
+            .quiz-container {
+                padding: 40px;
+            }
+
+            .quiz-container h1 {
+                font-size: 36px;
+            }
+
+            .question {
+                font-size: 24px;
+            }
+
+            .options button {
+                font-size: 20px;
+            }
+
+            .completion-message p {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <h1>Stage 3 Quiz: Real-World Applications of AI</h1>
+        <div id="quiz-content">
+            <!-- Quiz questions will be loaded here dynamically -->
+        </div>
+        <div class="completion-message" id="completion-message" style="display: none;">
+            <p>Hurray! You’ve completed the course. Ready to start your project?</p>
+            <button onclick="goToProjectPage()">Start Your Project</button>
+        </div>
+    </div>
+
+    <script>
+        // Stage 3 Quiz questions and answers based on provided content
+        const questions = [
+            {
+                question: "What is a chatbot?",
+                options: [
+                    "An AI-powered assistant that answers questions",
+                    "A hardware tool for websites",
+                    "A type of AI-powered vehicle",
+                    "A search engine for AI"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following is an example of a virtual assistant?",
+                options: ["Siri", "YouTube", "TikTok", "Netflix"],
+                correct: 0
+            },
+            {
+                question: "How does AI personalize your Netflix recommendations?",
+                options: [
+                    "By guessing your preferences",
+                    "By analyzing your viewing history",
+                    "By tracking your GPS location",
+                    "By asking other users"
+                ],
+                correct: 1
+            },
+            {
+                question: "What role does AI play in healthcare?",
+                options: [
+                    "Diagnosing diseases faster",
+                    "Driving patients to the hospital",
+                    "Cooking food for doctors",
+                    "Painting hospital walls"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which industry uses AI to detect fraud?",
+                options: ["Finance", "Healthcare", "Retail", "Education"],
+                correct: 0
+            },
+            {
+                question: "What powers self-driving cars?",
+                options: [
+                    "AI systems for navigation and object recognition",
+                    "Manual controls",
+                    "Fuel-based engines",
+                    "Advanced brakes only"
+                ],
+                correct: 0
+            },
+            {
+                question: "How does AI enhance online shopping experiences?",
+                options: [
+                    "By suggesting products based on buying behavior",
+                    "By randomly suggesting items",
+                    "By altering product prices",
+                    "By displaying the same items repeatedly"
+                ],
+                correct: 0
+            },
+            {
+                question: "What is an example of AI in entertainment?",
+                options: [
+                    "Recommending music playlists on Spotify",
+                    "Diagnosing diseases",
+                    "Operating traffic lights",
+                    "Sorting books by genre"
+                ],
+                correct: 0
+            },
+            {
+                question: "How does AI detect fraud in banks?",
+                options: [
+                    "By monitoring unusual spending patterns",
+                    "By freezing all accounts",
+                    "By interviewing customers",
+                    "By blocking all transactions"
+                ],
+                correct: 0
+            },
+            {
+                question: "What does AI do in self-driving cars?",
+                options: [
+                    "Navigates roads and follows traffic rules",
+                    "Fuels the car",
+                    "Manages entertainment systems",
+                    "Designs the car interior"
+                ],
+                correct: 0
+            }
+        ];
+
+        const quizContent = document.getElementById("quiz-content");
+        const completionMessage = document.getElementById("completion-message");
+
+        function loadQuiz() {
+            questions.forEach((item, index) => {
+                const questionBlock = document.createElement("div");
+                questionBlock.classList.add("question-block");
+
+                // Question
+                const questionText = document.createElement("p");
+                questionText.classList.add("question");
+                questionText.textContent = `${index + 1}. ${item.question}`;
+                questionBlock.appendChild(questionText);
+
+                // Options
+                const optionsList = document.createElement("ul");
+                optionsList.classList.add("options");
+
+                item.options.forEach((option, optionIndex) => {
+                    const optionButton = document.createElement("button");
+                    optionButton.textContent = option;
+                    optionButton.addEventListener("click", () => handleAnswer(optionButton, optionIndex, item.correct));
+                    optionsList.appendChild(optionButton);
+                });
+
+                questionBlock.appendChild(optionsList);
+                quizContent.appendChild(questionBlock);
+            });
+        }
+
+        function handleAnswer(button, selected, correct) {
+            const buttons = button.parentNode.querySelectorAll("button");
+
+            // Disable all buttons for the question
+            buttons.forEach((btn) => btn.disabled = true);
+
+            if (selected === correct) {
+                button.classList.add("correct");
+            } else {
+                button.classList.add("incorrect");
+                const feedback = document.createElement("p");
+                feedback.classList.add("feedback");
+                feedback.textContent = "Incorrect! Click below to see the correct answer.";
+
+                const showAnswer = document.createElement("span");
+                showAnswer.classList.add("show-answer");
+                showAnswer.textContent = "Show Answer";
+                showAnswer.addEventListener("click", () => {
+                    buttons[correct].classList.add("correct");
+                });
+
+                button.parentNode.parentNode.appendChild(feedback);
+                button.parentNode.parentNode.appendChild(showAnswer);
+            }
+
+            // Check if all questions are answered
+            checkCompletion();
+        }
+
+        function checkCompletion() {
+            const allButtons = document.querySelectorAll(".options button");
+            const allDisabled = Array.from(allButtons).every((btn) => btn.disabled);
+
+            if (allDisabled) {
+                completionMessage.style.display = "block";
+            }
+        }
+
+        function goToProjectPage() {
+            window.location.href = "project.html"; // Replace with the actual URL of the project page
+        }
+
+        // Load the quiz
+        loadQuiz();
+    </script>
+</body>
+</html>

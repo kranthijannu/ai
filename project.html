@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 4 - Build Your First AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #222;
+            border-left: 5px solid #007bff;
+            border-radius: 5px;
+        }
+        .code-box {
+            background: #000;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre {
+            color: #0f0;
+        }
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Build Your First AI Chatbot</h1>
+        <p>In this project, we will build a **Simple AI Chatbot** using Python that can respond to user inputs conversationally and perform basic tasks.</p>
+        
+        <div class="step">
+            <h2>Step 1: Setting Up</h2>
+            <p>Ensure you have Python installed on your system. Use an editor like VS Code, PyCharm, or IDLE for writing the code.</p>
+        </div>
+
+        <div class="step">
+            <h2>Step 2: Writing the Code</h2>
+            <p>Here’s the complete code for the chatbot:</p>
+            <div class="code-box">
+                <pre>
+import datetime
+
+def chatbot():
+    print("Hello! I am your friendly AI Chatbot.")
+    print("You can ask me simple questions like:\n- 'What is your name?'\n- 'What time is it?'\n- 'How are you?'")
+    print("Type 'exit' to end the conversation.\n")
+
+    while True:
+        # Get user input
+        user_input = input("You: ").lower()
+        
+        # Respond to greetings
+        if user_input in ["hi", "hello", "hey"]:
+            print("Chatbot: Hello! How can I help you today?")
+        
+        # Respond to name question
+        elif "your name" in user_input:
+            print("Chatbot: My name is ChatBot 101, your friendly assistant!")
+        
+        # Respond to time query
+        elif "time" in user_input:
+            current_time = datetime.datetime.now().strftime("%H:%M:%S")
+            print(f"Chatbot: The current time is {current_time}.")
+        
+        # Respond to "how are you?"
+        elif "how are you" in user_input:
+            print("Chatbot: I'm just a bunch of code, but I'm feeling chatty!")
+        
+        # Exit the program
+        elif user_input == "exit":
+            print("Chatbot: Goodbye! Have a great day!")
+            break
+        
+        # Handle unrecognized inputs
+        else:
+            print("Chatbot: I'm sorry, I don't understand that. Can you try asking something else?")
+
+# Run the chatbot
+chatbot()
+                </pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Step 3: Running the Project</h2>
+            <p>Save the code in a file named <code>chatbot.py</code> and run it using the following command:</p>
+            <div class="code-box">
+                <pre>python chatbot.py</pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Step 4: Interacting with the Chatbot</h2>
+            <p>Once the chatbot is running, try asking it the following:</p>
+            <ul>
+                <li>"Hi" or "Hello"</li>
+                <li>"What is your name?"</li>
+                <li>"What time is it?"</li>
+                <li>"How are you?"</li>
+                <li>Type "exit" to stop the chatbot.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h2>Step 5: Enhancing the Chatbot</h2>
+            <p>Here are some ideas to make the chatbot more interesting:</p>
+            <ul>
+                <li>Add responses for "Tell me a joke" or "What’s the weather?"</li>
+                <li>Use a dictionary to map inputs to responses for better scalability.</li>
+                <li>Integrate AI APIs like OpenAI’s ChatGPT or Google Dialogflow for advanced conversations.</li>
+            </ul>
+        </div>
+
+        <a href="choose_reward.html" class="back-btn">Congratulations, Claim Your Reward</a>
+    </div>
+</body>
+</html>

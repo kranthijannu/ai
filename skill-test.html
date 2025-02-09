@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive AI Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .quiz-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            overflow-y: auto;
+        }
+
+        .quiz-container h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin: 10px 0;
+        }
+
+        .options button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .options button:hover {
+            background-color: #0056b3;
+        }
+
+        .options button.correct {
+            background-color: #28a745;
+        }
+
+        .options button.incorrect {
+            background-color: #dc3545;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #ffb703;
+        }
+
+        .show-answer {
+            margin-top: 10px;
+            color: #00d4ff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .next-step {
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .next-step button {
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .next-step button:hover {
+            background-color: #218838;
+        }
+
+        @media (min-width: 768px) {
+            .quiz-container {
+                padding: 40px;
+            }
+
+            .quiz-container h1 {
+                font-size: 36px;
+            }
+
+            .question {
+                font-size: 24px;
+            }
+
+            .options button {
+                font-size: 20px;
+            }
+
+            .next-step button {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container" id="quiz">
+        <h1>Quick Quiz</h1>
+        <div id="quiz-content">
+            <!-- Quiz questions will be loaded here dynamically -->
+        </div>
+        <div class="next-step" id="next-step">
+            <p>Hurray! You completed Stage 1. Go to the next step!</p>
+            <button onclick="goToNextStep()">Next Step</button>
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions and answers
+        const questions = [
+            {
+                question: "What does AI stand for?",
+                options: ["Artificial Intelligence", "Automated Interaction", "Advanced Innovation", "Applied Informatics"],
+                correct: 0
+            },
+            {
+                question: "Who coined the term 'Artificial Intelligence'?",
+                options: ["Alan Turing", "John McCarthy", "Elon Musk", "Claude Shannon"],
+                correct: 1
+            },
+            {
+                question: "What is the Turing Test designed to measure?",
+                options: ["Machine speed", "Human-like intelligence", "Data storage", "Network security"],
+                correct: 1
+            },
+            {
+                question: "Name a famous AI-powered chess-playing computer.",
+                options: ["Deep Blue", "AlphaZero", "Stockfish", "OpenAI"],
+                correct: 0
+            },
+            {
+                question: "Which industry uses AI for fraud detection and algorithmic trading?",
+                options: ["Healthcare", "Education", "Finance", "Retail"],
+                correct: 2
+            },
+            {
+                question: "What is a chatbot?",
+                options: ["A tool for designing websites", "A virtual assistant", "An algorithm for data storage", "A physical robot"],
+                correct: 1
+            },
+            {
+                question: "Which decade is known for the 'AI winter'?",
+                options: ["1950s", "1970s", "1980s", "1990s"],
+                correct: 2
+            },
+            {
+                question: "Name one AI application in healthcare.",
+                options: ["Fraud detection", "Medical imaging analysis", "Content recommendation", "Traffic management"],
+                correct: 1
+            },
+            {
+                question: "What is natural language processing in AI?",
+                options: ["Programming machine logic", "Understanding and generating human language", "Data visualization", "Image recognition"],
+                correct: 1
+            },
+            {
+                question: "Which streaming platform uses AI for content recommendations?",
+                options: ["Spotify", "Netflix", "YouTube", "All of the above"],
+                correct: 3
+            }
+        ];
+
+        const quizContent = document.getElementById("quiz-content");
+        const nextStep = document.getElementById("next-step");
+
+        function loadQuiz() {
+            questions.forEach((item, index) => {
+                const questionBlock = document.createElement("div");
+                questionBlock.classList.add("question-block");
+
+                // Question
+                const questionText = document.createElement("p");
+                questionText.classList.add("question");
+                questionText.textContent = `${index + 1}. ${item.question}`;
+                questionBlock.appendChild(questionText);
+
+                // Options
+                const optionsList = document.createElement("ul");
+                optionsList.classList.add("options");
+
+                item.options.forEach((option, optionIndex) => {
+                    const optionButton = document.createElement("button");
+                    optionButton.textContent = option;
+                    optionButton.addEventListener("click", () => handleAnswer(optionButton, optionIndex, item.correct));
+                    optionsList.appendChild(optionButton);
+                });
+
+                questionBlock.appendChild(optionsList);
+                quizContent.appendChild(questionBlock);
+            });
+        }
+
+        function handleAnswer(button, selected, correct) {
+            const buttons = button.parentNode.querySelectorAll("button");
+
+            // Disable all buttons for the question
+            buttons.forEach((btn) => btn.disabled = true);
+
+            if (selected === correct) {
+                button.classList.add("correct");
+            } else {
+                button.classList.add("incorrect");
+                const feedback = document.createElement("p");
+                feedback.classList.add("feedback");
+                feedback.textContent = "Incorrect! Click below to see the correct answer.";
+
+                const showAnswer = document.createElement("span");
+                showAnswer.classList.add("show-answer");
+                showAnswer.textContent = "Show Answer";
+                showAnswer.addEventListener("click", () => {
+                    buttons[correct].classList.add("correct");
+                });
+
+                button.parentNode.parentNode.appendChild(feedback);
+                button.parentNode.parentNode.appendChild(showAnswer);
+            }
+
+            // Check if all questions are answered
+            checkCompletion();
+        }
+
+        function checkCompletion() {
+            const allButtons = document.querySelectorAll(".options button");
+            const allDisabled = Array.from(allButtons).every((btn) => btn.disabled);
+
+            if (allDisabled) {
+                nextStep.style.display = "block";
+            }
+        }
+
+        function goToNextStep() {
+            window.location.href = "stage2.html"; // Replace with the actual URL of Stage 2
+        }
+
+        // Load the quiz
+        loadQuiz();
+    </script>
+</body>
+</html>
